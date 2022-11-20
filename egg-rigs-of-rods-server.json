@@ -1,0 +1,92 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2022-11-19T23:59:58-05:00",
+    "name": "Rigs of Rods server",
+    "author": "unknown@unknown.com",
+    "description": null,
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/parkervcp\/yolks:debian": "ghcr.io\/parkervcp\/yolks:debian"
+    },
+    "file_denylist": [],
+    "startup": ".\/rorserver -c config.cfg -resource-dir {{RESOURCE_DIR}} -script-file {{SCRIPT_FILE}}",
+    "config": {
+        "files": "{\r\n    \"config.cfg\": {\r\n        \"parser\": \"ini\",\r\n        \"find\": {\r\n            \"name\": \"{{env.name}}\",\r\n            \"ip\": \"0.0.0.0\",\r\n            \"mode\": \"inet\",\r\n            \"port\": \"{{server.build.default.port}}\",\r\n            \"terrain\": \"{{env.terrain}}\",\r\n            \"slots\": \"{{env.slots}}\",\r\n            \"vehiclelimit\": \"{{env.vehiclelimit}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"INFO|server started in\",\r\n    \"userInteraction\": [\r\n        \"INFO| Registration failed\"\r\n    ]\r\n}",
+        "logs": "{\r\n    \"custom\": true\r\n}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/ash\r\n# Rigs of Rods server https:\/\/www.rigsofrods.org\r\n\r\necho \"RoR|install script started\"\r\n\r\ncd \/mnt\/server\r\n\r\necho \"RoR|fetching server files\"\r\nwget https:\/\/files.rigsofrods.org\/rorserver243-linux.zip\r\n\r\necho \"RoR|unzipping server files...\"\r\nunzip rorserver243-linux.zip\r\necho \"RoR|unzipped\"\r\n\r\necho \"RoR|moving server files...\"\r\nmv rorserver243-linux\/* .\/\r\necho \"RoR|moved\"\r\n\r\necho \"RoR|cleaning up...\"\r\nrm -rf rorserver243-linux\/ rorserver243-linux.zip\r\necho \"RoR|cleaned up\"\r\n\r\nchmod +x rorserver\r\necho \"RoR|applied permissions\"",
+            "container": "ghcr.io\/pterodactyl\/installers:alpine",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Max Players",
+            "description": "Max players allowed on the server",
+            "env_variable": "slots",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|digits_between:1,2",
+            "field_type": "text"
+        },
+        {
+            "name": "Terrain",
+            "description": "",
+            "env_variable": "terrain",
+            "default_value": "any",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Server name",
+            "description": "The server name that will be displayed to players",
+            "env_variable": "name",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:64",
+            "field_type": "text"
+        },
+        {
+            "name": "Resources directory",
+            "description": "",
+            "env_variable": "RESOURCE_DIR",
+            "default_value": ".\/resources\/",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Script file",
+            "description": "",
+            "env_variable": "SCRIPT_FILE",
+            "default_value": ".\/resources\/scripts\/Main.as",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Vehicle Limit",
+            "description": "",
+            "env_variable": "vehiclelimit",
+            "default_value": "4",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric|digits_between:1,2",
+            "field_type": "text"
+        }
+    ]
+}
