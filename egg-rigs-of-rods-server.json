@@ -4,9 +4,9 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-11-19T23:59:58-05:00",
+    "exported_at": "2022-12-29T15:23:28-05:00",
     "name": "Rigs of Rods server",
-    "author": "unknown@unknown.com",
+    "author": "rafael.galvan@rigsofrods.org",
     "description": null,
     "features": null,
     "docker_images": {
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/ash\r\n# Rigs of Rods server https:\/\/www.rigsofrods.org\r\n\r\necho \"RoR|install script started\"\r\n\r\ncd \/mnt\/server\r\n\r\necho \"RoR|fetching server files\"\r\nwget https:\/\/files.rigsofrods.org\/rorserver243-linux.zip\r\n\r\necho \"RoR|unzipping server files...\"\r\nunzip rorserver243-linux.zip\r\necho \"RoR|unzipped\"\r\n\r\necho \"RoR|moving server files...\"\r\nmv rorserver243-linux\/* .\/\r\necho \"RoR|moved\"\r\n\r\necho \"RoR|cleaning up...\"\r\nrm -rf rorserver243-linux\/ rorserver243-linux.zip\r\necho \"RoR|cleaned up\"\r\n\r\nchmod +x rorserver\r\necho \"RoR|applied permissions\"",
+            "script": "#!\/bin\/ash\r\n# Rigs of Rods server www.rigsofrods.org\r\n\r\necho \"RoR|install script started\"\r\n\r\ncd \/mnt\/server\r\n\r\necho \"RoR|fetching server files\"\r\nwget https:\/\/files.rigsofrods.org\/rorserver243-linux.zip\r\n\r\necho \"RoR|unzipping server files...\"\r\nunzip rorserver244-linux.zip\r\necho \"RoR|unzipped\"\r\n\r\necho \"RoR|moving server files...\"\r\nmv rorserver244-linux\/* .\/\r\necho \"RoR|moved\"\r\n\r\necho \"RoR|cleaning up...\"\r\nrm -rf rorserver244-linux\/ rorserver244-linux.zip\r\necho \"RoR|cleaned up\"\r\n\r\nchmod +x rorserver\r\necho \"RoR|applied permissions\"",
             "container": "ghcr.io\/pterodactyl\/installers:alpine",
             "entrypoint": "ash"
         }
