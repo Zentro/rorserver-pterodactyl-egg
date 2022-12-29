@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/ash\r\n# Rigs of Rods server www.rigsofrods.org\r\n\r\necho \"RoR|install script started\"\r\n\r\ncd \/mnt\/server\r\n\r\necho \"RoR|fetching server files\"\r\nwget https:\/\/files.rigsofrods.org\/rorserver243-linux.zip\r\n\r\necho \"RoR|unzipping server files...\"\r\nunzip rorserver244-linux.zip\r\necho \"RoR|unzipped\"\r\n\r\necho \"RoR|moving server files...\"\r\nmv rorserver244-linux\/* .\/\r\necho \"RoR|moved\"\r\n\r\necho \"RoR|cleaning up...\"\r\nrm -rf rorserver244-linux\/ rorserver244-linux.zip\r\necho \"RoR|cleaned up\"\r\n\r\nchmod +x rorserver\r\necho \"RoR|applied permissions\"",
+            "script": "#!\/bin\/ash\r\n# Rigs of Rods server www.rigsofrods.org\r\n\r\necho \"RoR|install script started\"\r\n\r\ncd \/mnt\/server\r\n\r\necho \"RoR|fetching server files\"\r\nwget https:\/\/files.rigsofrods.org\/rorserver244-linux.zip\r\n\r\necho \"RoR|unzipping server files...\"\r\nunzip rorserver244-linux.zip\r\necho \"RoR|unzipped\"\r\n\r\necho \"RoR|moving server files...\"\r\nmv rorserver244-linux\/* .\/\r\necho \"RoR|moved\"\r\n\r\necho \"RoR|cleaning up...\"\r\nrm -rf rorserver244-linux\/ rorserver244-linux.zip\r\necho \"RoR|cleaned up\"\r\n\r\nchmod +x rorserver\r\necho \"RoR|applied permissions\"",
             "container": "ghcr.io\/pterodactyl\/installers:alpine",
             "entrypoint": "ash"
         }
